@@ -1,17 +1,14 @@
-'use client'
-
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import React, { useMemo } from "react";
 
 import Autoplay from "embla-carousel-autoplay";
 import { Badge } from "./ui/badge";
-import Bus from '@/public/projects/bus.svg';
-import Cafe from '@/public/projects/cafe.svg';
-import Desk from '@/public/projects/desk.svg';
-import Image from "next/image";
-import ParkingMeter from '@/public/projects/parking-meter.svg';
-import RoadClosed from '@/public/projects/road-closed.svg';
-import Truck from '@/public/projects/truck.svg';
+import Bus from '@/public/projects/bus.svg?react';
+import Cafe from '@/public/projects/cafe.svg?react';
+import Desk from '@/public/projects/desk.svg?react';
+import ParkingMeter from '@/public/projects/parking-meter.svg?react';
+import RoadClosed from '@/public/projects/road-closed.svg?react';
+import Truck from '@/public/projects/truck.svg?react';
 import { getImagePath } from "@/lib/getImagePath";
 import { motion } from "framer-motion";
 
@@ -151,11 +148,11 @@ const Projects: React.FC = () => {
                             style={{ aspectRatio: `${project.aspect}` }}
                           >
                             <div className="relative w-full h-full">
-                              <Image
+                              <img
                                 src={getImagePath(img)}
                                 alt={`${project.title} - ${imgIndex + 1}`}
-                                fill
-                                className="object-contain border-foreground border-2"
+                                loading="lazy"
+                                className="absolute inset-0 w-full h-full object-contain border-foreground border-2"
                                 sizes="(max-width: 768px) 100vw, 960px"
                               />
                             </div>

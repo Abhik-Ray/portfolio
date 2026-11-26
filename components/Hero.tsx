@@ -1,15 +1,5 @@
-"use client";
+import { Card } from "./ui/card";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-
-import Image from "next/image";
 import { getImagePath } from "@/lib/getImagePath";
 import { motion } from "framer-motion";
 
@@ -95,7 +85,7 @@ export default function Hero() {
                   ease: "easeInOut"
                 }}
               >
-                <Image
+                <img
                   src={getImagePath("/profile.jpg")}
                   alt="Abhik Ray Profile"
                   width={96}

@@ -1,8 +1,7 @@
-"use client";
-
 import { memo, useRef } from "react";
 
-import Art from "@/components/Art";
+// Blender showcase is disabled for now (large images slow the page down).
+// import Art from "@/components/Art";
 import Contact from "@/components/Contact";
 import Experience from "@/components/Experience";
 import GridBG from "@/components/GridBG";
@@ -14,7 +13,7 @@ import Skills from "@/components/Skills";
 const MemoizedExperience = memo(Experience);
 const MemoizedSkills = memo(Skills);
 const MemoizedProjects = memo(Projects);
-const MemoizedArt = memo(Art);
+// const MemoizedArt = memo(Art);
 
 export default function Home() {
   const contactRef = useRef<HTMLDivElement>(null);
@@ -30,7 +29,7 @@ export default function Home() {
       <MemoizedExperience />
       <MemoizedSkills />
       <MemoizedProjects />
-      <MemoizedArt />
+      {/* <MemoizedArt /> */}
       <Contact ref={contactRef} />
     </main>
   );

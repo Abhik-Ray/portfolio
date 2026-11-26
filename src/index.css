@@ -1,6 +1,17 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@font-face {
+  font-family: "Rajdhani";
+  src: url("/Rajdhani-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+}
+
+:root {
+  --font-roboto-condensed: "Roboto Condensed", sans-serif;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -119,6 +130,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: "Rajdhani", sans-serif;
   }
 }
 

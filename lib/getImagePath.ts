@@ -1,4 +1,5 @@
+/** Prefixes a public-folder path (e.g. "/profile.jpg") with Vite's base URL. */
 export function getImagePath(src: string): string {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-  return `${basePath}${src}`;
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+  return `${base}${src}`;
 }

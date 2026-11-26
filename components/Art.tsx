@@ -1,9 +1,6 @@
-"use client";
-
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { memo, useCallback, useMemo, useState } from 'react';
 
-import Image from 'next/image';
 import { getImagePath } from '@/lib/getImagePath';
 
 // Move static data outside component to prevent re-creation on every render
@@ -43,12 +40,11 @@ const ArtworkCard = memo(({ artwork, onClick }: { artwork: typeof artworks[numbe
         <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-foreground/50 z-10 group-hover:w-6 group-hover:h-6 transition-all duration-300"></div>
 
         <div className="relative aspect-[4/3] bg-black/50">
-            <Image
+            <img
                 src={getImagePath(artwork.src)}
                 alt={artwork.title}
-                fill
                 loading="lazy"
-                className="object-cover group-hover:opacity-80 transition-opacity duration-300"
+                className="absolute inset-0 w-full h-full object-cover group-hover:opacity-80 transition-opacity duration-300"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
             
@@ -175,13 +171,12 @@ const Art: React.FC = () => {
                                 <div className="absolute inset-0 border-4 border-foreground shadow-[0_0_50px_hsl(var(--foreground)/0.8)]"></div>
                                 
                                 <div className="relative w-full h-full">
-                                    <Image
+                                    <img
                                         src={getImagePath(selectedArtwork.src)}
                                         alt={selectedArtwork.title}
-                                        fill
-                                        className="object-contain"
+                                        className="absolute inset-0 w-full h-full object-contain"
                                         sizes="100vw"
-                                        priority
+                                        fetchPriority="high"
                                     />
                                 </div>
 
