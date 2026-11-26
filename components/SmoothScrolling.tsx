@@ -12,14 +12,10 @@ export default function SmoothScrolling() {
       wheelMultiplier: 1,
       touchMultiplier: 2,
       infinite: false,
+      // Lenis runs (and stops) its own requestAnimationFrame loop, so no
+      // loop is leaked when React re-runs this effect.
+      autoRaf: true,
     });
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
 
     return () => {
       lenis.destroy();

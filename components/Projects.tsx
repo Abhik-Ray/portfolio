@@ -152,6 +152,7 @@ const Projects: React.FC = () => {
                                 src={getImagePath(img)}
                                 alt={`${project.title} - ${imgIndex + 1}`}
                                 loading="lazy"
+                                decoding="async"
                                 className="absolute inset-0 w-full h-full object-contain border-foreground border-2"
                                 sizes="(max-width: 768px) 100vw, 960px"
                               />

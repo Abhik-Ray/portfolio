@@ -44,6 +44,7 @@ const ArtworkCard = memo(({ artwork, onClick }: { artwork: typeof artworks[numbe
                 src={getImagePath(artwork.src)}
                 alt={artwork.title}
                 loading="lazy"
+                decoding="async"
                 className="absolute inset-0 w-full h-full object-cover group-hover:opacity-80 transition-opacity duration-300"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />

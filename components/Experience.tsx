@@ -77,7 +77,7 @@ const ExperienceItem = memo(({ experience }: { experience: typeof experiences[nu
   <motion.li className="relative md:pl-12" variants={itemVariants}>
     <div 
       role="article" 
-      className="p-6 border border-foreground bg-black backdrop-blur-sm relative overflow-hidden modal-cut"
+      className="p-6 border border-foreground bg-black relative overflow-hidden modal-cut"
     >
       {/* Corner accents */}
       <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-foreground" />
@@ -133,21 +133,33 @@ const Experience: React.FC = () => {
             transition={{ duration: 2, ease: "easeOut" }}
           />
 
-          {/* Animated raindrop traveling down the timeline */}
-          <motion.div 
-            className="absolute left-[7px] md:left-1/2 w-0.5 h-24 bg-linear-to-b from-transparent via-foreground to-transparent"
-            initial={{ top: 0, opacity: 0 }}
-            animate={{ 
-              top: ["0%", "100%"],
-              opacity: [0, 1, 1, 0]
-            }}
-            transition={{ 
-              duration: 2.5,
-              ease: "linear",
-              repeat: Infinity,
-              repeatDelay: 1
-            }}
-          />
+          {/* Animated raindrop traveling down the timeline.
+              The full-height track is moved with transform (GPU only) instead
+              of animating `top`, which re-ran page layout every frame. The
+              clip stops the moved track from adding extra scroll height. */}
+          <div
+            aria-hidden="true"
+            className="absolute left-[7px] md:left-1/2 top-0 w-0.5 pointer-events-none overflow-hidden"
+            style={{ bottom: "-6rem" }}
+          >
+            <motion.div
+              className="absolute inset-x-0 top-0"
+              style={{ height: "calc(100% - 6rem)", willChange: "transform, opacity" }}
+              initial={{ y: "0%", opacity: 0 }}
+              animate={{
+                y: ["0%", "100%"],
+                opacity: [0, 1, 1, 0]
+              }}
+              transition={{
+                duration: 2.5,
+                ease: "linear",
+                repeat: Infinity,
+                repeatDelay: 1
+              }}
+            >
+              <div className="w-full h-24 bg-linear-to-b from-transparent via-foreground to-transparent" />
+            </motion.div>
+          </div>
 
           {experiences.map((experience) => (
             <ExperienceItem key={experience.id} experience={experience} />
